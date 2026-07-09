@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Openbook 十週年方案預算表｜2027年2–5月</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #f3ede0;
+    --paper-card: #fbf8f1;
+    --ink: #2a2521;
+    --ink-soft: #6b6156;
+    --rule: #d9cfba;
+    --rule-strong: #b7a98a;
+    --red: #b5352f;
+    --red-soft: #e7c6bf;
+    --red-wash: #f8ece9;
+    --gold: #a9822f;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 700px at 10% -10%, #fffaf0 0%, transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Noto Sans TC', sans-serif;
+    padding:48px 20px 80px;
+  }
+  .sheet{
+    max-width:1080px;
+    margin:0 auto;
+  }
+  /* ---- Header : ledger cover ---- */
+  header{
+    border-bottom:3px double var(--rule-strong);
+    padding-bottom:22px;
+    margin-bottom:8px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .title-block .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.18em;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  h1{
+    font-family:'Noto Serif TC', serif;
+    font-weight:900;
+    font-size:clamp(26px,4vw,36px);
+    margin:0;
+    line-height:1.3;
+  }
+  .period{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--ink-soft);
+    text-align:right;
+  }
+  .period b{color:var(--ink); font-weight:600;}
+
+  /* ---- legend ---- */
+  .legend{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:13px;
+    color:var(--ink-soft);
+    margin:18px 0 26px;
+  }
+  .legend .mark{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:22px;height:22px;
+  }
+  .legend svg{position:absolute; inset:-6px; width:34px; height:34px; overflow:visible;}
+
+  /* ---- grid of cards ---- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(300px,1fr));
+    gap:16px;
+    margin-bottom:34px;
+  }
+  .card{
+    background:var(--paper-card);
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:16px 18px 14px;
+    position:relative;
+    box-shadow: 0 1px 0 rgba(0,0,0,.02);
+  }
+  .card.recurring{
+    border-color:var(--red-soft);
+    background: linear-gradient(180deg, var(--red-wash) 0%, var(--paper-card) 46px);
+  }
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .card-name{
+    font-family:'Noto Serif TC', serif;
+    font-weight:700;
+    font-size:17px;
+    line-height:1.35;
+  }
+  .card-sub{
+    display:block;
+    font-family:'Noto Sans TC', sans-serif;
+    font-weight:400;
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+  .stamp{
+    position:relative;
+    flex:0 0 auto;
+    width:44px;height:44px;
+  }
+  .stamp svg{position:absolute; inset:0; width:100%; height:100%;}
+  .stamp span{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Noto Serif TC', serif;
+    font-weight:700;
+    font-size:12px;
+    color:var(--red);
+    transform:rotate(-8deg);
+  }
+  .amount-row{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    margin:8px 0 6px;
+    padding-top:8px;
+    border-top:1px dashed var(--rule);
+  }
+  .amount-row label{
+    font-size:12px;
+    color:var(--ink-soft);
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .amount-row input{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:22px;
+    font-weight:600;
+    color:var(--ink);
+    width:100%;
+    max-width:110px;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--rule-strong);
+    padding:2px 2px 3px;
+    text-align:right;
+    -moz-appearance:textfield;
+  }
+  .amount-row input:focus{
+    outline:none;
+    border-bottom:1px solid var(--red);
+    background:#fffef9;
+  }
+  .amount-row input::-webkit-outer-spin-button,
+  .amount-row input::-webkit-inner-spin-button{
+    -webkit-appearance:none; margin:0;
+  }
+  .unit{font-size:13px; color:var(--ink-soft);}
+
+  .detail-toggle{
+    background:none;
+    border:none;
+    cursor:pointer;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--gold);
+    padding:4px 0;
+    display:flex;
+    align-items:center;
+    gap:5px;
+  }
+  .detail-toggle .chev{
+    display:inline-block;
+    transition:transform .18s ease;
+  }
+  .card.open .detail-toggle .chev{transform:rotate(90deg);}
+  .detail-list{
+    display:none;
+    margin:6px 0 0;
+    padding:10px 12px;
+    background:rgba(0,0,0,.02);
+    border-left:2px solid var(--rule-strong);
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink);
+  }
+  .card.open .detail-list{display:block;}
+  .detail-list ul{margin:0; padding-left:0; list-style:none;}
+  .detail-list li{
+    margin-bottom:2px;
+    display:flex;
+    align-items:flex-start;
+    gap:6px;
+  }
+  .detail-list li::before{
+    content:"–";
+    color:var(--ink-soft);
+    flex:0 0 auto;
+  }
+  .detail-text{
+    flex:1 1 auto;
+    outline:none;
+    border-bottom:1px dashed transparent;
+    padding:1px 2px;
+    border-radius:1px;
+    min-width:0;
+  }
+  .detail-text:hover{border-bottom-color:var(--rule-strong);}
+  .detail-text:focus{
+    background:#fffef9;
+    border-bottom-color:var(--red);
+  }
+  .detail-text:empty::before{
+    content:attr(data-placeholder);
+    color:var(--ink-soft);
+    opacity:.6;
+  }
+  .detail-remove{
+    flex:0 0 auto;
+    background:none;
+    border:none;
+    color:var(--ink-soft);
+    cursor:pointer;
+    font-size:13px;
+    line-height:1;
+    padding:2px 4px;
+    opacity:.5;
+  }
+  .detail-remove:hover{opacity:1; color:var(--red);}
+  .detail-add{
+    margin-top:6px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--gold);
+    padding:2px 0;
+  }
+  .detail-add:hover{color:var(--red);}
+
+  /* ---- summary ledger ---- */
+  .summary{
+    background:var(--paper-card);
+    border:1px solid var(--rule-strong);
+    border-radius:2px;
+    padding:26px 28px 22px;
+  }
+  .summary h2{
+    font-family:'Noto Serif TC', serif;
+    font-size:19px;
+    margin:0 0 16px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .summary h2::before{
+    content:"";
+    width:8px;height:8px;
+    background:var(--red);
+    border-radius:50%;
+    display:inline-block;
+  }
+  .row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:11px 0;
+    border-bottom:1px solid var(--rule);
+    gap:20px;
+  }
+  .row:last-of-type{border-bottom:none;}
+  .row .label{
+    font-size:14.5px;
+  }
+  .row .label small{
+    display:block;
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-top:3px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .row .value{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:20px;
+    font-weight:600;
+    white-space:nowrap;
+  }
+  .row.total .value{color:var(--ink); font-size:26px;}
+  .row.recurring-total .value{color:var(--red);}
+  .row.need .value{color:var(--red);}
+
+  .note-box{
+    margin-top:14px;
+    padding:14px 16px;
+    background:var(--red-wash);
+    border:1px dashed var(--red-soft);
+    border-radius:2px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink);
+  }
+  .note-box label{
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+    cursor:pointer;
+  }
+  .note-box input[type=checkbox]{
+    margin-top:3px;
+    accent-color:var(--red);
+  }
+  .note-result{
+    margin-top:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    color:var(--red);
+  }
+
+  footer{
+    text-align:center;
+    margin-top:30px;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  @media (max-width:520px){
+    .period{text-align:left;}
+    header{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header>
+    <div class="title-block">
+      <div class="eyebrow">OPENBOOK 閱讀誌・十週年方案</div>
+      <h1>目前各方案預算儀表板</h1>
+    </div>
+    <div class="period">執行期間<br><b>2027 年 2–5 月</b></div>
+  </header>
+
+  <div class="legend">
+    <span class="mark">
+      <svg viewBox="0 0 34 34"><ellipse cx="17" cy="17" rx="14" ry="10" fill="none" stroke="#b5352f" stroke-width="1.6" transform="rotate(-6 17 17)"/></svg>
+    </span>
+    紅圈標記＝常態製作項目（可重複執行之固定產出），下方另有獨立小計
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="summary">
+    <h2>加總結果</h2>
+    <div class="row total">
+      <div class="label">總預算<small>12 個方案合計</small></div>
+      <div class="value" id="sum-total">—</div>
+    </div>
+    <div class="row recurring-total">
+      <div class="label">常態占比小計<small id="recurring-list">數位報導＋5國書評媒體＋十場講座＋Podcast＋好書獎＋閱讀大使</small></div>
+      <div class="value" id="sum-recurring">—</div>
+    </div>
+    <div class="row need">
+      <div class="label">扣除常態所需外部資金<small>總預算－常態占比小計</small></div>
+      <div class="value" id="sum-need">—</div>
+    </div>
+
+    <div class="note-box">
+      <label>
+        <input type="checkbox" id="toggle-lecture">
+        <span>目前國際作家皆尚未回覆，若扣除「十場講座」中國外名家相關預算（90 萬），外部資金需求將降為：</span>
+      </label>
+      <div class="note-result" id="note-result">328 萬元</div>
+    </div>
+  </div>
+
+  <footer>金額單位：萬元（新台幣）・點擊金額可直接修改，加總即時更新・點擊「說明」可展開/收合細目</footer>
+</div>
+
+<script>
+const items = [
+  { name:"國際書展＋特展", amount:120, recurring:false,
+    details:["場租 40萬","展覽團隊費用 50萬","講座開支 20萬","顧展人力 3萬","雜支"] },
+  { name:"募資", amount:30, recurring:false,
+    details:["紀念小物","宣傳手冊","專案人員","募資美術設計"] },
+  { name:"品牌影音推廣", amount:60, recurring:false,
+    details:["5支名人短影片","KOL貼文 3篇","贊助影片重製"] },
+  { name:"數位報導", amount:30, recurring:true,
+    details:["三個專題＋Reels","（外部設計師支援＋圖片授權＋獨立記者）"] },
+  { name:"5國書評媒體", amount:30, recurring:true,
+    details:["專題一：「台灣的十年」","專題二：聚焦出版產業的40年或10年","專題三：地緣政治下的台灣"] },
+  { name:"十場講座", amount:90, recurring:true,
+    details:["文化局 3場","好書獎 6場","國外名家（2–3位，或場地、飛機艙等、飯店等級、招待人力、口譯、作品翻譯升級）"] },
+  { name:"Podcast", amount:15, recurring:true,
+    details:["10集製作費","錄音間設備更新"] },
+  { name:"好書獎＋閱讀大使", sub:"（不含獎座＋評審費用）", amount:140, recurring:true,
+    details:["代言費","平面設計","動態拍攝","典禮"] },
+  { name:"國內走讀", sub:"（簡版3條，長版10條）", amount:28, recurring:false,
+    details:["外縣市路線三條（當地集合）","搭配企業贊助","島內散步執行"] },
+  { name:"國外走讀", amount:35, recurring:false,
+    details:["東京兒童文學走讀 1場","郭孚導遊費","郭孚PM費","島內散步領隊費","莊世瑩老師講師費","島內散步合作費","宣傳費"] },
+  { name:"影展", amount:25, recurring:false,
+    details:["Giloo合作，3個月線上策展","串流宣傳資源","策展人","兌換序號（募資可用）","影評、行銷宣傳（Reels）"] },
+  { name:"作家下午茶", amount:30, recurring:false,
+    details:["作家出席費","食物、雜支","廣告","策展人費用","拍攝團隊","美術"] },
+];
+
+const grid = document.getElementById('grid');
+
+function stampSvg(){
+  return `<svg viewBox="0 0 44 44"><ellipse cx="22" cy="22" rx="19" ry="14" fill="none" stroke="#b5352f" stroke-width="1.8" transform="rotate(-7 22 22)"/></svg>`;
+}
+
+function renderDetailItems(ul, itemIndex){
+  ul.innerHTML = '';
+  items[itemIndex].details.forEach((text, dIndex) => {
+    const li = document.createElement('li');
+
+    const span = document.createElement('span');
+    span.className = 'detail-text';
+    span.contentEditable = 'true';
+    span.textContent = text;
+    span.dataset.placeholder = '輸入細目內容…';
+
+    span.addEventListener('input', () => {
+      items[itemIndex].details[dIndex] = span.textContent;
+    });
+    span.addEventListener('blur', () => {
+      items[itemIndex].details[dIndex] = span.textContent.trim();
+    });
+    span.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        span.blur();
+      }
+    });
+
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'detail-remove';
+    removeBtn.type = 'button';
+    removeBtn.setAttribute('aria-label', '刪除此細目');
+    removeBtn.textContent = '×';
+    removeBtn.addEventListener('click', () => {
+      items[itemIndex].details.splice(dIndex, 1);
+      renderDetailItems(ul, itemIndex);
+    });
+
+    li.appendChild(span);
+    li.appendChild(removeBtn);
+    ul.appendChild(li);
+  });
+}
+
+items.forEach((item, i) => {
+  const card = document.createElement('div');
+  card.className = 'card' + (item.recurring ? ' recurring' : '');
+  card.dataset.index = i;
+
+  card.innerHTML = `
+    <div class="card-top">
+      <div class="card-name">${item.name}${item.sub ? `<span class="card-sub">${item.sub}</span>` : ''}</div>
+      ${item.recurring ? `<div class="stamp">${stampSvg()}<span>常態</span></div>` : ''}
+    </div>
+    <div class="amount-row">
+      <label for="amt-${i}">預算費用</label>
+      <input type="number" id="amt-${i}" min="0" step="1" value="${item.amount}">
+      <span class="unit">萬</span>
+    </div>
+    <button class="detail-toggle" type="button" aria-expanded="false">
+      <span class="chev">▸</span> 說明 / 細目
+    </button>
+    <div class="detail-list">
+      <ul class="detail-ul"></ul>
+      <button class="detail-add" type="button">＋ 新增細目</button>
+    </div>
+  `;
+  grid.appendChild(card);
+
+  const ul = card.querySelector('.detail-ul');
+  renderDetailItems(ul, i);
+
+  card.querySelector('.detail-toggle').addEventListener('click', () => {
+    card.classList.toggle('open');
+    const btn = card.querySelector('.detail-toggle');
+    btn.setAttribute('aria-expanded', card.classList.contains('open'));
+  });
+
+  card.querySelector('.detail-add').addEventListener('click', () => {
+    items[i].details.push('');
+    renderDetailItems(ul, i);
+    const last = ul.querySelectorAll('.detail-text');
+    if (last.length) {
+      last[last.length - 1].focus();
+    }
+  });
+
+  card.querySelector('input').addEventListener('input', (e) => {
+    items[i].amount = parseFloat(e.target.value) || 0;
+    recalc();
+  });
+});
+
+const lectureCheckbox = document.getElementById('toggle-lecture');
+lectureCheckbox.addEventListener('change', recalc);
+
+function fmt(n){
+  return `約 ${Math.round(n * 10) / 10} 萬`;
+}
+
+function recalc(){
+  const total = items.reduce((s, it) => s + it.amount, 0);
+  const recurringTotal = items.filter(it => it.recurring).reduce((s, it) => s + it.amount, 0);
+  const need = total - recurringTotal;
+
+  document.getElementById('sum-total').textContent = fmt(total);
+  document.getElementById('sum-recurring').textContent = fmt(recurringTotal);
+  document.getElementById('sum-need').textContent = fmt(need);
+
+  const recurringNames = items.filter(it => it.recurring)
+    .map(it => `${it.name}：${it.amount} 萬`).join('、');
+  document.getElementById('recurring-list').textContent = recurringNames;
+
+  const lectureItem = items.find(it => it.name === "十場講座");
+  let noteVal = need;
+  if (lectureCheckbox.checked && lectureItem) {
+    noteVal = need - lectureItem.amount;
+  }
+  document.getElementById('note-result').textContent = fmt(noteVal) + " 元";
+}
+
+recalc();
+</script>
+</body>
+</html>
