@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Openbook 十週年方案預算表｜2027年2–5月</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #f3ede0;
+    --paper-card: #fbf8f1;
+    --ink: #2a2521;
+    --ink-soft: #6b6156;
+    --rule: #d9cfba;
+    --rule-strong: #b7a98a;
+    --red: #b5352f;
+    --red-soft: #e7c6bf;
+    --red-wash: #f8ece9;
+    --gold: #a9822f;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 700px at 10% -10%, #fffaf0 0%, transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Noto Sans TC', sans-serif;
+    padding:48px 20px 80px;
+  }
+  .sheet{ max-width:1080px; margin:0 auto; }
+
+  header{
+    border-bottom:3px double var(--rule-strong);
+    padding-bottom:22px;
+    margin-bottom:8px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .title-block .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.18em;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  h1{
+    font-family:'Noto Serif TC', serif;
+    font-weight:900;
+    font-size:clamp(26px,4vw,36px);
+    margin:0;
+    line-height:1.3;
+  }
+  .period{ font-family:'IBM Plex Mono', monospace; font-size:14px; color:var(--ink-soft); text-align:right; }
+  .period b{color:var(--ink); font-weight:600;}
+
+  .legend{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:22px;
+    font-size:13px;
+    color:var(--ink-soft);
+    margin:18px 0 26px;
+  }
+  .legend-item{ display:flex; align-items:center; gap:8px; }
+  .legend .mark{ position:relative; display:inline-flex; align-items:center; justify-content:center; width:22px;height:22px; }
+  .legend svg{position:absolute; inset:-6px; width:34px; height:34px; overflow:visible;}
+  .legend .box{ width:14px; height:14px; border:1.5px solid var(--rule-strong); background:var(--paper-card); }
+  .legend .box.off{ background:repeating-linear-gradient(45deg, var(--rule) 0 3px, transparent 3px 6px); opacity:.6;}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(310px,1fr));
+    gap:16px;
+    margin-bottom:34px;
+  }
+  .card{
+    background:var(--paper-card);
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:16px 18px 14px;
+    position:relative;
+    box-shadow: 0 1px 0 rgba(0,0,0,.02);
+    transition:opacity .15s ease;
+  }
+  .card.recurring{
+    border-color:var(--red-soft);
+    background: linear-gradient(180deg, var(--red-wash) 0%, var(--paper-card) 46px);
+  }
+  .card.excluded{ opacity:.42; }
+  .card.excluded .card-total{ text-decoration:line-through; }
+
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:8px;
+    margin-bottom:8px;
+  }
+  .card-left{ display:flex; align-items:flex-start; gap:10px; }
+  .include-check{
+    margin-top:4px;
+    width:16px; height:16px;
+    accent-color:var(--red);
+    flex:0 0 auto;
+    cursor:pointer;
+  }
+  .card-name{ font-family:'Noto Serif TC', serif; font-weight:700; font-size:16.5px; line-height:1.35; }
+  .card-sub{ display:block; font-family:'Noto Sans TC', sans-serif; font-weight:400; font-size:12px; color:var(--ink-soft); margin-top:2px; }
+  .stamp{ position:relative; flex:0 0 auto; width:42px;height:42px; }
+  .stamp svg{position:absolute; inset:0; width:100%; height:100%;}
+  .stamp span{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Noto Serif TC', serif;
+    font-weight:700; font-size:11.5px; color:var(--red);
+    transform:rotate(-8deg);
+  }
+
+  .card-total{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:22px;
+    font-weight:600;
+    margin:8px 0 4px;
+    padding-top:8px;
+    border-top:1px dashed var(--rule);
+  }
+  .card-total .num{ color:var(--ink); }
+  .card-total .unit{ font-size:13px; color:var(--ink-soft); font-weight:400; margin-left:2px;}
+
+  .detail-toggle{
+    background:none; border:none; cursor:pointer;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px; color:var(--gold);
+    padding:4px 0;
+    display:flex; align-items:center; gap:5px;
+  }
+  .detail-toggle .chev{ display:inline-block; transition:transform .18s ease; }
+  .card.open .detail-toggle .chev{transform:rotate(90deg);}
+  .detail-list{ display:none; margin:6px 0 0; }
+  .card.open .detail-list{display:block;}
+
+  .detail-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:6px 0;
+    border-bottom:1px solid var(--rule);
+    font-size:13px;
+  }
+  .detail-row:last-child{ border-bottom:none; }
+  .detail-label{ flex:1; line-height:1.5; }
+  .detail-amt{ display:flex; align-items:baseline; gap:4px; flex:0 0 auto; }
+  .detail-amt input{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px; font-weight:600; color:var(--ink);
+    width:56px;
+    background:transparent;
+    border:none; border-bottom:1px solid var(--rule-strong);
+    padding:2px 2px 3px; text-align:right;
+    -moz-appearance:textfield;
+  }
+  .detail-amt input:focus{ outline:none; border-bottom:1px solid var(--red); background:#fffef9; }
+  .detail-amt input::-webkit-outer-spin-button,
+  .detail-amt input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+  .detail-amt .unit-sm{ font-size:11.5px; color:var(--ink-soft); }
+
+  .summary{
+    background:var(--paper-card);
+    border:1px solid var(--rule-strong);
+    border-radius:2px;
+    padding:26px 28px 22px;
+  }
+  .summary h2{
+    font-family:'Noto Serif TC', serif; font-size:19px; margin:0 0 16px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .summary h2::before{ content:""; width:8px;height:8px; background:var(--red); border-radius:50%; display:inline-block; }
+  .row{ display:flex; justify-content:space-between; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--rule); gap:20px; }
+  .row:last-of-type{border-bottom:none;}
+  .row .label{ font-size:14.5px; }
+  .row .label small{ display:block; font-size:12px; color:var(--ink-soft); margin-top:3px; font-family:'IBM Plex Mono', monospace; line-height:1.6;}
+  .row .value{ font-family:'IBM Plex Mono', monospace; font-size:20px; font-weight:600; white-space:nowrap; }
+  .row.total .value{color:var(--ink); font-size:26px;}
+  .row.recurring-total .value{color:var(--red);}
+  .row.need .value{color:var(--red);}
+
+  .hint{
+    margin-top:14px; padding:12px 16px;
+    background:rgba(0,0,0,.02);
+    border-left:2px solid var(--rule-strong);
+    font-size:12.5px; line-height:1.7; color:var(--ink-soft);
+  }
+
+  footer{ text-align:center; margin-top:30px; font-size:11.5px; color:var(--ink-soft); font-family:'IBM Plex Mono', monospace; }
+
+  @media (max-width:520px){
+    .period{text-align:left;}
+    header{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header>
+    <div class="title-block">
+      <div class="eyebrow">OPENBOOK 閱讀誌・十週年方案</div>
+      <h1>目前各方案預算儀表板</h1>
+    </div>
+    <div class="period">執行期間<br><b>2027 年 2–5 月</b></div>
+  </header>
+
+  <div class="legend">
+    <div class="legend-item">
+      <span class="mark"><svg viewBox="0 0 34 34"><ellipse cx="17" cy="17" rx="14" ry="10" fill="none" stroke="#b5352f" stroke-width="1.6" transform="rotate(-6 17 17)"/></svg></span>
+      紅圈標記＝常態製作項目，下方另有獨立小計
+    </div>
+    <div class="legend-item"><span class="box"></span> 勾選＝計入加總</div>
+    <div class="legend-item"><span class="box off"></span> 取消勾選＝暫不計入加總（卡片淡出）</div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="summary">
+    <h2>加總結果</h2>
+    <div class="row total">
+      <div class="label">總預算<small>已勾選項目合計</small></div>
+      <div class="value" id="sum-total">—</div>
+    </div>
+    <div class="row recurring-total">
+      <div class="label">常態占比小計<small id="recurring-list"></small></div>
+      <div class="value" id="sum-recurring">—</div>
+    </div>
+    <div class="row need">
+      <div class="label">扣除常態所需外部資金<small>總預算－常態占比小計</small></div>
+      <div class="value" id="sum-need">—</div>
+    </div>
+    <div class="hint">
+      每個項目可個別勾選是否計入加總——例如「國際作家」若邀約尚未確認，取消勾選即可即時模擬扣除該筆預算後的總數與外部資金需求，不需另外手動計算。細目金額皆可直接點擊修改，項目小計會自動加總細目。
+    </div>
+  </div>
+
+  <footer>金額單位：萬元（新台幣）・點擊細目金額可直接修改，加總即時更新・點擊「細目」可展開/收合</footer>
+</div>
+
+<script>
+const items = [
+  { name:"國際書展＋特展", recurring:false, included:true,
+    details:[
+      {label:"場租", amount:40},
+      {label:"展覽團隊費用", amount:50},
+      {label:"講座開支", amount:20},
+      {label:"顧展人力", amount:3},
+      {label:"雜支", amount:7},
+    ]},
+  { name:"募資", recurring:false, included:true,
+    details:[
+      {label:"紀念小物", amount:8},
+      {label:"宣傳手冊", amount:8},
+      {label:"專案人員", amount:7},
+      {label:"募資美術設計", amount:7},
+    ]},
+  { name:"品牌影音推廣", recurring:false, included:true,
+    details:[
+      {label:"5支名人短影片", amount:20},
+      {label:"KOL貼文 3篇", amount:20},
+      {label:"贊助影片重製", amount:20},
+    ]},
+  { name:"數位報導", recurring:true, included:true,
+    details:[
+      {label:"三個專題＋Reels（外部設計師支援＋圖片授權＋獨立記者）", amount:30},
+    ]},
+  { name:"5國書評媒體", recurring:true, included:true,
+    details:[
+      {label:"專題一：「台灣的十年」", amount:10},
+      {label:"專題二：聚焦出版產業的40年或10年", amount:10},
+      {label:"專題三：地緣政治下的台灣", amount:10},
+    ]},
+  { name:"十場講座", sub:"（國內場次）", recurring:true, included:true,
+    details:[
+      {label:"文化局 3場", amount:20},
+      {label:"好書獎 6場", amount:20},
+    ]},
+  { name:"國際作家", sub:"（原屬十場講座，獨立列出）", recurring:false, included:true,
+    details:[
+      {label:"機票艙等", amount:15},
+      {label:"飯店等級", amount:15},
+      {label:"招待人力", amount:10},
+      {label:"口譯", amount:5},
+      {label:"作品翻譯升級", amount:5},
+    ]},
+  { name:"Podcast", recurring:true, included:true,
+    details:[
+      {label:"10集製作費", amount:10},
+      {label:"錄音間設備更新", amount:5},
+    ]},
+  { name:"好書獎＋閱讀大使", sub:"（不含獎座＋評審費用）", recurring:true, included:true,
+    details:[
+      {label:"代言費", amount:80},
+      {label:"平面設計", amount:20},
+      {label:"動態拍攝", amount:20},
+      {label:"典禮", amount:20},
+    ]},
+  { name:"國內走讀", sub:"（簡版3條，長版10條）", recurring:false, included:true,
+    details:[
+      {label:"外縣市路線三條（當地集合）", amount:12},
+      {label:"搭配企業贊助", amount:8},
+      {label:"島內散步執行", amount:8},
+    ]},
+  { name:"國外走讀", sub:"東京兒童文學走讀 1場", recurring:false, included:true,
+    details:[
+      {label:"郭孚導遊費", amount:6},
+      {label:"郭孚PM費", amount:6},
+      {label:"島內散步領隊費", amount:6},
+      {label:"莊世瑩老師講師費", amount:6},
+      {label:"島內散步合作費", amount:6},
+      {label:"宣傳費", amount:5},
+    ]},
+  { name:"影展", sub:"Giloo合作，3個月線上策展", recurring:false, included:true,
+    details:[
+      {label:"串流宣傳資源", amount:8},
+      {label:"策展人", amount:8},
+      {label:"兌換序號（募資可用）", amount:5},
+      {label:"影評、行銷宣傳（Reels）", amount:4},
+    ]},
+  { name:"作家下午茶", recurring:false, included:true,
+    details:[
+      {label:"作家出席費", amount:6},
+      {label:"食物、雜支", amount:4},
+      {label:"廣告", amount:4},
+      {label:"策展人費用", amount:6},
+      {label:"拍攝團隊", amount:6},
+      {label:"美術", amount:4},
+    ]},
+];
+
+const grid = document.getElementById('grid');
+
+function stampSvg(){
+  return `<svg viewBox="0 0 42 42"><ellipse cx="21" cy="21" rx="18" ry="13" fill="none" stroke="#b5352f" stroke-width="1.8" transform="rotate(-7 21 21)"/></svg>`;
+}
+
+function itemTotal(item){
+  return item.details.reduce((s, d) => s + (d.amount || 0), 0);
+}
+
+items.forEach((item, i) => {
+  const card = document.createElement('div');
+  card.className = 'card open' + (item.recurring ? ' recurring' : '');
+  card.dataset.index = i;
+
+  card.innerHTML = `
+    <div class="card-top">
+      <div class="card-left">
+        <input type="checkbox" class="include-check" id="inc-${i}" ${item.included ? 'checked' : ''}>
+        <div>
+          <div class="card-name">${item.name}${item.sub ? `<span class="card-sub">${item.sub}</span>` : ''}</div>
+        </div>
+      </div>
+      ${item.recurring ? `<div class="stamp">${stampSvg()}<span>常態</span></div>` : ''}
+    </div>
+    <div class="card-total"><span class="num" id="total-${i}">0</span><span class="unit"> 萬</span></div>
+    <button class="detail-toggle" type="button" aria-expanded="true">
+      <span class="chev">▸</span> 細目
+    </button>
+    <div class="detail-list">
+      ${item.details.map((d, j) => `
+        <div class="detail-row">
+          <span class="detail-label">${d.label}</span>
+          <span class="detail-amt">
+            <input type="number" min="0" step="1" value="${d.amount}" id="d-${i}-${j}">
+            <span class="unit-sm">萬</span>
+          </span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+  grid.appendChild(card);
+
+  card.querySelector('.detail-toggle').addEventListener('click', () => {
+    card.classList.toggle('open');
+    card.querySelector('.detail-toggle').setAttribute('aria-expanded', card.classList.contains('open'));
+  });
+
+  card.querySelector('.include-check').addEventListener('change', (e) => {
+    items[i].included = e.target.checked;
+    card.classList.toggle('excluded', !e.target.checked);
+    recalc();
+  });
+
+  item.details.forEach((d, j) => {
+    document.getElementById(`d-${i}-${j}`).addEventListener('input', (e) => {
+      items[i].details[j].amount = parseFloat(e.target.value) || 0;
+      document.getElementById(`total-${i}`).textContent = itemTotal(items[i]);
+      recalc();
+    });
+  });
+
+  document.getElementById(`total-${i}`).textContent = itemTotal(item);
+});
+
+function fmt(n){
+  return `約 ${Math.round(n * 10) / 10} 萬`;
+}
+
+function recalc(){
+  const included = items.filter(it => it.included);
+  const total = included.reduce((s, it) => s + itemTotal(it), 0);
+  const recurringIncluded = included.filter(it => it.recurring);
+  const recurringTotal = recurringIncluded.reduce((s, it) => s + itemTotal(it), 0);
+  const need = total - recurringTotal;
+
+  document.getElementById('sum-total').textContent = fmt(total);
+  document.getElementById('sum-recurring').textContent = fmt(recurringTotal);
+  document.getElementById('sum-need').textContent = fmt(need);
+
+  const recurringNames = recurringIncluded.length
+    ? recurringIncluded.map(it => `${it.name}：${itemTotal(it)} 萬`).join('、')
+    : '（目前無勾選中的常態項目）';
+  document.getElementById('recurring-list').textContent = recurringNames;
+}
+
+recalc();
+</script>
+</body>
+</html>
