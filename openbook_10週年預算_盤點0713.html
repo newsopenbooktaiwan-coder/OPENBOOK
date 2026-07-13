@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Openbook 十週年方案預算表｜2027年2–5月</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #f3ede0;
+    --paper-card: #fbf8f1;
+    --ink: #2a2521;
+    --ink-soft: #6b6156;
+    --rule: #d9cfba;
+    --rule-strong: #b7a98a;
+    --red: #b5352f;
+    --red-soft: #e7c6bf;
+    --red-wash: #f8ece9;
+    --blue: #3d5c91;
+    --blue-soft: #c4cfe0;
+    --blue-wash: #eaeef5;
+    --green: #5c7a44;
+    --green-soft: #cad6bb;
+    --green-wash: #eef2e7;
+    --gold: #a9822f;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 700px at 10% -10%, #fffaf0 0%, transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Noto Sans TC', sans-serif;
+    padding:48px 20px 80px;
+  }
+  .sheet{ max-width:1080px; margin:0 auto; }
+
+  header{
+    border-bottom:3px double var(--rule-strong);
+    padding-bottom:22px;
+    margin-bottom:8px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .title-block .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.18em;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  h1{
+    font-family:'Noto Serif TC', serif;
+    font-weight:900;
+    font-size:clamp(26px,4vw,36px);
+    margin:0;
+    line-height:1.3;
+  }
+  .period{ font-family:'IBM Plex Mono', monospace; font-size:14px; color:var(--ink-soft); text-align:right; }
+  .period b{color:var(--ink); font-weight:600;}
+
+  .legend{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:22px;
+    font-size:13px;
+    color:var(--ink-soft);
+    margin:18px 0 26px;
+  }
+  .legend-item{ display:flex; align-items:center; gap:8px; }
+  .legend .mark{ position:relative; display:inline-flex; align-items:center; justify-content:center; width:22px;height:22px; }
+  .legend svg{position:absolute; inset:-6px; width:34px; height:34px; overflow:visible;}
+  .legend .box{ width:14px; height:14px; border:1.5px solid var(--rule-strong); background:var(--paper-card); }
+  .legend .box.off{ background:repeating-linear-gradient(45deg, var(--rule) 0 3px, transparent 3px 6px); opacity:.6;}
+  .legend-note{ max-width:520px; }
+
+  .tag-settings{
+    display:flex;
+    flex-wrap:wrap;
+    gap:22px;
+    margin:-10px 0 26px;
+    padding:12px 16px;
+    background:var(--paper-card);
+    border:1px dashed var(--rule-strong);
+    border-radius:2px;
+  }
+  .tag-setting{ display:flex; align-items:center; gap:8px; }
+  .tag-setting .dot{ width:12px; height:12px; border-radius:50%; flex:0 0 auto; }
+  .dot-red{ background:var(--red); }
+  .dot-blue{ background:var(--blue); }
+  .dot-green{ background:var(--green); }
+  .tag-setting input{
+    font-family:'Noto Sans TC', sans-serif;
+    font-size:13px;
+    color:var(--ink);
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--rule-strong);
+    padding:2px 2px;
+    width:120px;
+  }
+  .tag-setting input:focus{ outline:none; border-bottom:1px solid var(--red); background:#fffef9; }
+
+  .sort-toolbar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 20px;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  .sort-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    background:var(--paper-card);
+    border:1px solid var(--rule-strong);
+    color:var(--ink-soft);
+    padding:6px 14px;
+    border-radius:2px;
+    cursor:pointer;
+  }
+  .sort-btn:hover{ border-color:var(--red); color:var(--red); }
+  .sort-btn.active{ background:var(--ink); border-color:var(--ink); color:#fbf8f1; }
+
+  .save-bar{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:0 0 20px;
+    padding:10px 16px;
+    background:var(--paper-card);
+    border:1px solid var(--rule-strong);
+    border-radius:2px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    flex-wrap:wrap;
+  }
+  .save-bar .save-status{
+    font-family:'IBM Plex Mono', monospace;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .save-bar .save-dot{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--green);
+    flex:0 0 auto;
+  }
+  .save-bar .save-dot.dirty{ background:var(--gold); }
+  .save-bar .save-dot.error{ background:var(--red); }
+  .save-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    background:var(--paper-card);
+    border:1px solid var(--rule-strong);
+    color:var(--ink-soft);
+    padding:6px 14px;
+    border-radius:2px;
+    cursor:pointer;
+    margin-left:auto;
+  }
+  .save-btn:hover{ border-color:var(--red); color:var(--red); }
+  .save-btn.clear-btn:hover{ border-color:var(--red); color:var(--red); background:var(--red-wash); }
+  .save-btn.export-btn:hover{ border-color:var(--blue); color:var(--blue); }
+  .save-btn.import-btn:hover{ border-color:var(--green); color:var(--green); }
+
+  .color-breakdown{
+    margin:6px 0 16px;
+    padding:14px 16px;
+    background:rgba(0,0,0,.02);
+    border-left:2px solid var(--rule-strong);
+  }
+  .color-breakdown h3{
+    font-family:'Noto Serif TC', serif;
+    font-size:14px;
+    margin:0 0 10px;
+    color:var(--ink-soft);
+    font-weight:700;
+  }
+  .color-row{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    padding:9px 0;
+    font-size:13.5px;
+    border-bottom:1px solid var(--rule);
+  }
+  .color-row:last-child{ border-bottom:none; }
+  .color-row-main{ display:flex; align-items:center; gap:10px; }
+  .color-row .dot{ width:11px; height:11px; border-radius:50%; flex:0 0 auto; }
+  .dot-none{ background:var(--paper-card); border:1.5px dashed var(--rule-strong); }
+  .color-row .color-name{ flex:0 0 auto; font-weight:600; }
+  .color-row .color-sum{
+    font-family:'IBM Plex Mono', monospace;
+    margin-left:auto;
+    font-weight:700;
+    color:var(--ink);
+    font-size:24px;
+  }
+  .color-row-items{
+    padding-left:21px;
+    font-size:12px;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+
+  .row.grand .value{ color:var(--ink-soft); font-size:20px; }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(310px,1fr));
+    gap:16px;
+    margin-bottom:34px;
+  }
+  .card{
+    background:var(--paper-card);
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:16px 18px 14px;
+    position:relative;
+    box-shadow: 0 1px 0 rgba(0,0,0,.02);
+    transition:opacity .15s ease;
+  }
+  .card.tag-red{
+    border-color:var(--red-soft);
+    background: linear-gradient(180deg, var(--red-wash) 0%, var(--paper-card) 46px);
+  }
+  .card.tag-blue{
+    border-color:var(--blue-soft);
+    background: linear-gradient(180deg, var(--blue-wash) 0%, var(--paper-card) 46px);
+  }
+  .card.tag-green{
+    border-color:var(--green-soft);
+    background: linear-gradient(180deg, var(--green-wash) 0%, var(--paper-card) 46px);
+  }
+  .card.excluded{ opacity:.42; }
+  .card.excluded .card-total{ text-decoration:line-through; }
+
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:8px;
+    margin-bottom:8px;
+  }
+  .card-left{ display:flex; align-items:flex-start; gap:10px; }
+  .include-check{
+    margin-top:4px;
+    width:16px; height:16px;
+    accent-color:var(--red);
+    flex:0 0 auto;
+    cursor:pointer;
+  }
+  .card-name-input{
+    font-family:'Noto Serif TC', serif; font-weight:700; font-size:16.5px; line-height:1.35;
+    width:100%;
+    background:transparent;
+    border:none;
+    border-bottom:1px dashed transparent;
+    padding:1px 2px;
+    color:var(--ink);
+  }
+  .card-name-input:hover{ border-bottom-color:var(--rule-strong); }
+  .card-name-input:focus{ outline:none; border-bottom:1px dashed var(--red); background:#fffef9; }
+  .card-sub{ display:block; font-family:'Noto Sans TC', sans-serif; font-weight:400; font-size:12px; color:var(--ink-soft); margin-top:2px; }
+
+  .tag-btn{
+    position:relative; flex:0 0 auto; width:42px; height:42px;
+    background:none; border:none; padding:0; cursor:pointer;
+  }
+  .tag-btn svg{position:absolute; inset:0; width:100%; height:100%;}
+  .tag-btn .tag-label{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Noto Serif TC', serif;
+    font-weight:700; font-size:11px;
+    transform:rotate(-8deg);
+  }
+  .tag-btn[data-tag="none"] .tag-label{ display:none; }
+  .tag-btn[data-tag="red"] .tag-label{ color:var(--red); }
+  .tag-btn[data-tag="blue"] .tag-label{ color:var(--blue); }
+  .tag-btn[data-tag="green"] .tag-label{ color:var(--green); }
+  .tag-btn:hover{ opacity:.75; }
+
+  .card-total{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:22px;
+    font-weight:600;
+    margin:8px 0 4px;
+    padding-top:8px;
+    border-top:1px dashed var(--rule);
+  }
+  .card-total .num{ color:var(--ink); }
+  .card-total .unit{ font-size:13px; color:var(--ink-soft); font-weight:400; margin-left:2px;}
+
+  .detail-toggle{
+    background:none; border:none; cursor:pointer;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px; color:var(--gold);
+    padding:4px 0;
+    display:flex; align-items:center; gap:5px;
+  }
+  .detail-toggle .chev{ display:inline-block; transition:transform .18s ease; }
+  .card.open .detail-toggle .chev{transform:rotate(90deg);}
+  .detail-list{ display:none; margin:6px 0 0; }
+  .card.open .detail-list{display:block;}
+
+  .detail-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    padding:6px 0;
+    border-bottom:1px solid var(--rule);
+    font-size:13px;
+  }
+  .detail-row:last-child{ border-bottom:none; }
+  .detail-label-input{
+    flex:1;
+    min-width:0;
+    line-height:1.5;
+    font-family:'Noto Sans TC', sans-serif;
+    font-size:13px;
+    color:var(--ink);
+    background:transparent;
+    border:none;
+    border-bottom:1px dashed transparent;
+    padding:2px 2px;
+  }
+  .detail-label-input:hover{ border-bottom-color:var(--rule-strong); }
+  .detail-label-input:focus{ outline:none; border-bottom:1px dashed var(--red); background:#fffef9; }
+  .detail-amt{ display:flex; align-items:baseline; gap:4px; flex:0 0 auto; }
+  .detail-amt input{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px; font-weight:600; color:var(--ink);
+    width:56px;
+    background:transparent;
+    border:none; border-bottom:1px solid var(--rule-strong);
+    padding:2px 2px 3px; text-align:right;
+    -moz-appearance:textfield;
+  }
+  .detail-amt input:focus{ outline:none; border-bottom:1px solid var(--red); background:#fffef9; }
+  .detail-amt input::-webkit-outer-spin-button,
+  .detail-amt input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+  .detail-amt .unit-sm{ font-size:11.5px; color:var(--ink-soft); }
+  .del-row{
+    flex:0 0 auto;
+    width:20px; height:20px;
+    border:1px solid var(--rule-strong);
+    background:var(--paper-card);
+    color:var(--ink-soft);
+    border-radius:50%;
+    font-size:13px;
+    line-height:1;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:0;
+  }
+  .del-row:hover{ color:#fff; background:var(--red); border-color:var(--red); }
+  .add-detail-btn{
+    margin-top:8px;
+    width:100%;
+    background:none;
+    border:1px dashed var(--rule-strong);
+    color:var(--gold);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:6px 0;
+    border-radius:2px;
+    cursor:pointer;
+  }
+  .add-detail-btn:hover{ border-color:var(--red); color:var(--red); }
+
+  .card-note{ margin-top:10px; }
+  .card-note textarea{
+    width:100%;
+    min-height:30px;
+    resize:vertical;
+    font-family:'Noto Sans TC', sans-serif;
+    font-size:12px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    background:transparent;
+    border:1px dashed var(--rule);
+    border-radius:2px;
+    padding:6px 8px;
+  }
+  .card-note textarea:focus{ outline:none; border-color:var(--red); background:#fffef9; color:var(--ink); }
+
+  .summary{
+    background:var(--paper-card);
+    border:1px solid var(--rule-strong);
+    border-radius:2px;
+    padding:26px 28px 22px;
+  }
+  .summary h2{
+    font-family:'Noto Serif TC', serif; font-size:19px; margin:0 0 16px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .summary h2::before{ content:""; width:8px;height:8px; background:var(--red); border-radius:50%; display:inline-block; }
+  .row{ display:flex; justify-content:space-between; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--rule); gap:20px; }
+  .row:last-of-type{border-bottom:none;}
+  .row .label{ font-size:14.5px; }
+  .row .label small{ display:block; font-size:12px; color:var(--ink-soft); margin-top:3px; font-family:'IBM Plex Mono', monospace; line-height:1.6;}
+  .row .value{ font-family:'IBM Plex Mono', monospace; font-size:20px; font-weight:600; white-space:nowrap; }
+  .row.total .value{color:var(--ink); font-size:26px;}
+
+  footer{ text-align:center; margin-top:30px; font-size:11.5px; color:var(--ink-soft); font-family:'IBM Plex Mono', monospace; }
+
+  @media (max-width:520px){
+    .period{text-align:left;}
+    header{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header>
+    <div class="title-block">
+      <div class="eyebrow">OPENBOOK 閱讀誌・十週年方案</div>
+      <h1>目前各方案預算儀表板</h1>
+    </div>
+    <div class="period">執行期間<br><b>2027 年 2–5 月</b></div>
+  </header>
+
+  <div class="legend">
+    <div class="legend-item legend-note">點擊項目右上角圓圈可切換顏色標記；每個顏色代表的意義都可以在下方自訂名稱</div>
+    <div class="legend-item"><span class="box"></span> 勾選＝計入加總</div>
+    <div class="legend-item"><span class="box off"></span> 取消勾選＝暫不計入加總（卡片淡出）</div>
+  </div>
+
+  <div class="tag-settings">
+    <div class="tag-setting" data-color="red">
+      <span class="dot dot-red"></span>
+      <input type="text" id="tagname-red" value="常態">
+    </div>
+    <div class="tag-setting" data-color="blue">
+      <span class="dot dot-blue"></span>
+      <input type="text" id="tagname-blue" value="對外籌款">
+    </div>
+    <div class="tag-setting" data-color="green">
+      <span class="dot dot-green"></span>
+      <input type="text" id="tagname-green" value="OB自籌">
+    </div>
+  </div>
+
+  <div class="save-bar">
+    <span class="save-status"><span class="save-dot" id="save-dot"></span><span id="save-status-text">尚未儲存</span></span>
+    <button class="save-btn" type="button" id="save-now-btn">立即儲存</button>
+    <button class="save-btn export-btn" type="button" id="export-btn">匯出成檔案</button>
+    <button class="save-btn import-btn" type="button" id="import-btn">匯入檔案</button>
+    <input type="file" id="import-file-input" accept="application/json,.json" style="display:none;">
+    <button class="save-btn clear-btn" type="button" id="clear-save-btn">清除已儲存資料</button>
+  </div>
+
+  <div class="sort-toolbar">
+    <span class="sort-label">項目排列：</span>
+    <button class="sort-btn active" type="button" data-mode="original">原始順序</button>
+    <button class="sort-btn" type="button" data-mode="color">依顏色排列</button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="summary">
+    <h2>加總結果</h2>
+    <div class="row grand">
+      <div class="label">全部總和</div>
+      <div class="value" id="sum-grand">—</div>
+    </div>
+    <div class="row total">
+      <div class="label">目前勾選合計<small>僅計算已勾選的項目</small></div>
+      <div class="value" id="sum-total">—</div>
+    </div>
+
+    <div class="color-breakdown">
+      <h3>依顏色加總</h3>
+      <div class="color-row" data-color="red">
+        <div class="color-row-main">
+          <span class="dot dot-red"></span>
+          <span class="color-name" id="cname-red">常態</span>
+          <span class="color-sum" id="cred-sum">—</span>
+        </div>
+        <div class="color-row-items" id="cred-items">—</div>
+      </div>
+      <div class="color-row" data-color="blue">
+        <div class="color-row-main">
+          <span class="dot dot-blue"></span>
+          <span class="color-name" id="cname-blue">對外籌款</span>
+          <span class="color-sum" id="cblue-sum">—</span>
+        </div>
+        <div class="color-row-items" id="cblue-items">—</div>
+      </div>
+      <div class="color-row" data-color="green">
+        <div class="color-row-main">
+          <span class="dot dot-green"></span>
+          <span class="color-name" id="cname-green">OB自籌</span>
+          <span class="color-sum" id="cgreen-sum">—</span>
+        </div>
+        <div class="color-row-items" id="cgreen-items">—</div>
+      </div>
+      <div class="color-row" data-color="none">
+        <div class="color-row-main">
+          <span class="dot dot-none"></span>
+          <span class="color-name">未標記</span>
+          <span class="color-sum" id="cnone-sum">—</span>
+        </div>
+        <div class="color-row-items" id="cnone-items">—</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>金額單位：萬元（新台幣）・點擊細目金額可直接修改，加總即時更新・點擊「細目」可展開/收合・點擊項目名稱可直接改名</footer>
+</div>
+
+<script>
+const items = [
+  { name:"國際書展＋特展", tagColor:'blue', included:true, note:'',
+    details:[
+      {label:"場租", amount:35},
+      {label:"展覽團隊費用", amount:60},
+      {label:"講座開支", amount:17},
+      {label:"顧展人力", amount:3},
+      {label:"雜支", amount:5},
+    ]},
+  { name:"募資", tagColor:'green', included:true, note:'',
+    details:[
+      {label:"紀念小物", amount:5},
+      {label:"宣傳手冊", amount:5},
+      {label:"募資計畫專案人員", amount:5},
+      {label:"募資網頁美術設計", amount:15},
+    ]},
+  { name:"品牌影音推廣", tagColor:'green', included:true, note:'',
+    details:[
+      {label:"【品牌行銷】5支名人短影片", amount:15},
+      {label:"【品牌行銷】KOL貼文 3篇", amount:15},
+      {label:"十週年形象影片", amount:30},
+    ]},
+  { name:"數位報導", tagColor:'red', included:true, note:'',
+    details:[
+      {label:"專題一：「台灣的十年」", amount:10},
+      {label:"專題二：出版的40年或10年", amount:10},
+      {label:"專題三：地緣政治下的台灣", amount:10},
+    ]},
+  { name:"5國書評媒體(文化局+國藝會*)", tagColor:'green', included:true, note:'',
+    details:[
+      {label:"演講費、場地費(一個國家兩場，共五場)", amount:10},
+      {label:"即時口譯", amount:10},
+      {label:"活動側記、線上訪問稿費、專案費", amount:10},
+    ]},
+  { name:"十場講座", sub:"（國內場次）", tagColor:'red', included:true, note:'',
+    details:[
+      {label:"文化局補助的夏日專題講座 3場", amount:10},
+      {label:"好書獎導讀講座_7場", amount:10},
+    ]},
+  { name:"國際作家(2-3人)", sub:"（原屬十場講座，獨立列出）", tagColor:'blue', included:true, note:'',
+    details:[
+      {label:"商務艙機票", amount:30},
+      {label:"四星級以上飯店", amount:25},
+      {label:"招待人力、餐食", amount:10},
+      {label:"口譯、作品翻譯", amount:5},
+      {label:"出席費", amount:10},
+    ]},
+  { name:"Podcast", tagColor:'blue', included:true, note:'',
+    details:[
+      {label:"10集製作費", amount:10},
+      {label:"錄音間設備更新", amount:5},
+    ]},
+  { name:"好書獎＋閱讀大使", sub:"（不含獎座＋評審費用）", tagColor:'red', included:true, note:'',
+    details:[
+      {label:"代言費", amount:10},
+      {label:"平面設計", amount:10},
+      {label:"動態拍攝", amount:25},
+      {label:"典禮（場地、舞台、攝影、宣傳等）", amount:95},
+    ]},
+  { name:"國內走讀", sub:"（簡版3條，長版10條）", tagColor:'blue', included:true, note:'',
+    details:[
+      {label:"外縣市路線三條：島內散步執行", amount:20},
+      {label:"OB人員", amount:3},
+      {label:"攝影、側記", amount:5},
+    ]},
+  { name:"國外走讀*", sub:"東京兒童文學走讀 1場", tagColor:'blue', included:true, note:'',
+    details:[
+      {label:"郭孚導遊費", amount:6},
+      {label:"郭孚PM費", amount:4},
+      {label:"島內散步領隊費", amount:7},
+      {label:"莊世瑩老師講師費", amount:5},
+      {label:"島內散步合作費", amount:11},
+      {label:"宣傳費", amount:2},
+    ]},
+  { name:"影展", sub:"Giloo合作，3個月線上策展", tagColor:'blue', included:true, note:'',
+    details:[
+      {label:"策展人", amount:3},
+      {label:"影評稿費", amount:5},
+      {label:"行銷宣傳（Reels、Podcast）", amount:4},
+      {label:"Giloo平台合作費、兌換序號", amount:11},
+      {label:"雜支", amount:2},
+    ]},
+  { name:"作家下午茶", tagColor:'green', included:true, note:'',
+    details:[
+      {label:"作家出席費", amount:3},
+      {label:"食物、交通費預留", amount:5},
+      {label:"行銷資源", amount:2},
+      {label:"策展人費用", amount:3},
+      {label:"拍攝團隊", amount:15},
+      {label:"美術", amount:2},
+    ]},
+];
+
+/* ---------- 自動儲存（瀏覽器 localStorage） ---------- */
+const STORAGE_KEY = 'openbook_10th_budget_dashboard_v2';
+let sortMode = 'original';
+let saveTimer = null;
+
+function loadSavedState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    if (data.items && Array.isArray(data.items) && data.items.length){
+      items.length = 0;
+      data.items.forEach(it => items.push(it));
+    }
+    if (data.tagLabels){
+      if (data.tagLabels.red !== undefined) document.getElementById('tagname-red').value = data.tagLabels.red;
+      if (data.tagLabels.blue !== undefined) document.getElementById('tagname-blue').value = data.tagLabels.blue;
+      if (data.tagLabels.green !== undefined) document.getElementById('tagname-green').value = data.tagLabels.green;
+    }
+    if (data.sortMode) sortMode = data.sortMode;
+    return data.savedAt || Date.now();
+  }catch(err){
+    console.error('讀取已儲存資料失敗', err);
+    return null;
+  }
+}
+
+function collectState(){
+  return {
+    items: items.map(it => ({
+      name: it.name,
+      sub: it.sub,
+      tagColor: it.tagColor,
+      included: it.included,
+      open: it.open,
+      note: it.note || '',
+      details: it.details.map(d => ({ label: d.label, amount: d.amount })),
+    })),
+    tagLabels: {
+      red: document.getElementById('tagname-red').value,
+      blue: document.getElementById('tagname-blue').value,
+      green: document.getElementById('tagname-green').value,
+    },
+    sortMode: sortMode,
+    savedAt: Date.now(),
+  };
+}
+
+function setSaveStatus(state, timestamp){
+  const dot = document.getElementById('save-dot');
+  const text = document.getElementById('save-status-text');
+  if (!dot || !text) return;
+  dot.classList.remove('dirty', 'error');
+  if (state === 'saved'){
+    const d = new Date(timestamp || Date.now());
+    const hh = String(d.getHours()).padStart(2,'0');
+    const mm = String(d.getMinutes()).padStart(2,'0');
+    const ss = String(d.getSeconds()).padStart(2,'0');
+    text.textContent = `已儲存於瀏覽器・${hh}:${mm}:${ss}`;
+  } else if (state === 'dirty'){
+    dot.classList.add('dirty');
+    text.textContent = '有未儲存的變更…';
+  } else if (state === 'error'){
+    dot.classList.add('error');
+    text.textContent = '無法儲存（此瀏覽器可能封鎖本機儲存）';
+  } else if (state === 'loaded'){
+    const d = new Date(timestamp || Date.now());
+    const hh = String(d.getHours()).padStart(2,'0');
+    const mm = String(d.getMinutes()).padStart(2,'0');
+    text.textContent = `已載入先前儲存的資料（${hh}:${mm} 儲存）`;
+  } else {
+    text.textContent = '尚未儲存・變更會自動存在此瀏覽器';
+  }
+}
+
+function saveState(){
+  try{
+    const data = collectState();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    setSaveStatus('saved', data.savedAt);
+  }catch(err){
+    console.error('儲存失敗', err);
+    setSaveStatus('error');
+  }
+}
+
+function scheduleSave(){
+  setSaveStatus('dirty');
+  if (saveTimer) clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveState, 500);
+}
+
+function clearSavedState(){
+  try{
+    localStorage.removeItem(STORAGE_KEY);
+    setSaveStatus('idle');
+  }catch(err){
+    console.error('清除失敗', err);
+  }
+}
+
+const savedTimestamp = loadSavedState();
+
+const grid = document.getElementById('grid');
+
+const TAG_ORDER = ['none', 'red', 'blue', 'green'];
+const TAG_STROKE = { none:'#b7a98a', red:'#b5352f', blue:'#3d5c91', green:'#5c7a44' };
+const TAG_LABEL = {
+  none:'',
+  red: document.getElementById('tagname-red').value,
+  blue: document.getElementById('tagname-blue').value,
+  green: document.getElementById('tagname-green').value,
+};
+
+function refreshTagLabels(){
+  document.querySelectorAll('.tag-btn').forEach(btn => {
+    const tag = btn.dataset.tag;
+    const labelEl = btn.querySelector('.tag-label');
+    if (labelEl) labelEl.textContent = TAG_LABEL[tag] || '';
+  });
+  document.getElementById('cname-red').textContent = TAG_LABEL.red || '紅色標記';
+  document.getElementById('cname-blue').textContent = TAG_LABEL.blue || '藍色標記';
+  document.getElementById('cname-green').textContent = TAG_LABEL.green || '綠色標記';
+}
+
+['red','blue','green'].forEach(color => {
+  document.getElementById(`tagname-${color}`).addEventListener('input', (e) => {
+    TAG_LABEL[color] = e.target.value;
+    refreshTagLabels();
+    scheduleSave();
+  });
+});
+
+function tagSvg(tag){
+  const stroke = TAG_STROKE[tag] || TAG_STROKE.none;
+  const dash = tag === 'none' ? ' stroke-dasharray="3 3"' : '';
+  return `<svg viewBox="0 0 42 42"><ellipse cx="21" cy="21" rx="18" ry="13" fill="none" stroke="${stroke}" stroke-width="1.8"${dash} transform="rotate(-7 21 21)"/></svg>`;
+}
+
+function itemTotal(item){
+  return item.details.reduce((s, d) => s + (d.amount || 0), 0);
+}
+
+function escapeHtml(s){
+  return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// track open/closed state and note per card across re-renders
+items.forEach(item => {
+  if (item.open === undefined) item.open = true;
+  if (item.note === undefined) item.note = '';
+});
+
+const COLOR_GROUP_ORDER = ['red', 'blue', 'green', 'none'];
+
+function getRenderOrder(){
+  const idxs = items.map((it, i) => i);
+  if (sortMode === 'color'){
+    idxs.sort((a, b) => {
+      const ga = COLOR_GROUP_ORDER.indexOf(items[a].tagColor);
+      const gb = COLOR_GROUP_ORDER.indexOf(items[b].tagColor);
+      if (ga !== gb) return ga - gb;
+      return a - b;
+    });
+  }
+  return idxs;
+}
+
+function renderAll(){
+  grid.innerHTML = '';
+  getRenderOrder().forEach(i => renderCard(i));
+}
+
+document.querySelectorAll('.sort-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    sortMode = btn.dataset.mode;
+    document.querySelectorAll('.sort-btn').forEach(b => b.classList.toggle('active', b === btn));
+    renderAll();
+    scheduleSave();
+  });
+});
+document.querySelectorAll('.sort-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === sortMode));
+
+function cardInnerHTML(item, i){
+  return `
+    <div class="card-top">
+      <div class="card-left">
+        <input type="checkbox" class="include-check" ${item.included ? 'checked' : ''}>
+        <div style="flex:1; min-width:0;">
+          <input type="text" class="card-name-input" value="${item.name.replace(/"/g,'&quot;')}">
+          ${item.sub ? `<span class="card-sub">${item.sub}</span>` : ''}
+        </div>
+      </div>
+      <button class="tag-btn" type="button" data-tag="${item.tagColor}" title="點擊切換顏色標記">
+        ${tagSvg(item.tagColor)}<span class="tag-label">${TAG_LABEL[item.tagColor]}</span>
+      </button>
+    </div>
+    <div class="card-total"><span class="num">${itemTotal(item)}</span><span class="unit"> 萬</span></div>
+    <button class="detail-toggle" type="button" aria-expanded="${item.open}">
+      <span class="chev">▸</span> 細目
+    </button>
+    <div class="detail-list">
+      ${item.details.map((d, j) => `
+        <div class="detail-row" data-j="${j}">
+          <input type="text" class="detail-label-input" value="${d.label.replace(/"/g,'&quot;')}">
+          <span class="detail-amt">
+            <input type="number" min="0" step="1" class="detail-amount-input" value="${d.amount}">
+            <span class="unit-sm">萬</span>
+          </span>
+          <button class="del-row" type="button" title="刪除細目">×</button>
+        </div>
+      `).join('')}
+      <button class="add-detail-btn" type="button">＋ 新增細目</button>
+    </div>
+    <div class="card-note">
+      <textarea class="card-note-input" placeholder="備註…" rows="1">${escapeHtml(item.note)}</textarea>
+    </div>
+  `;
+}
+
+function renderCard(i){
+  const item = items[i];
+  let card = grid.querySelector(`.card[data-index="${i}"]`);
+  if (!card){
+    card = document.createElement('div');
+    card.dataset.index = i;
+    grid.appendChild(card);
+  }
+  card.className = 'card' + (item.open ? ' open' : '') + (item.tagColor !== 'none' ? ' tag-' + item.tagColor : '') + (item.included ? '' : ' excluded');
+  card.innerHTML = cardInnerHTML(item, i);
+  bindCard(i);
+}
+
+function bindCard(i){
+  const item = items[i];
+  const card = grid.querySelector(`.card[data-index="${i}"]`);
+
+  card.querySelector('.detail-toggle').addEventListener('click', () => {
+    item.open = !item.open;
+    renderCard(i);
+    scheduleSave();
+  });
+
+  card.querySelector('.include-check').addEventListener('change', (e) => {
+    item.included = e.target.checked;
+    card.classList.toggle('excluded', !item.included);
+    recalc();
+    scheduleSave();
+  });
+
+  card.querySelector('.card-name-input').addEventListener('input', (e) => {
+    item.name = e.target.value;
+    recalc();
+    scheduleSave();
+  });
+
+  card.querySelector('.tag-btn').addEventListener('click', () => {
+    const idx = TAG_ORDER.indexOf(item.tagColor);
+    item.tagColor = TAG_ORDER[(idx + 1) % TAG_ORDER.length];
+    if (sortMode === 'color'){
+      renderAll();
+    } else {
+      renderCard(i);
+    }
+    recalc();
+    scheduleSave();
+  });
+
+  card.querySelectorAll('.detail-row').forEach(row => {
+    const j = parseInt(row.dataset.j, 10);
+
+    row.querySelector('.detail-label-input').addEventListener('input', (e) => {
+      item.details[j].label = e.target.value;
+      scheduleSave();
+    });
+
+    row.querySelector('.detail-amount-input').addEventListener('input', (e) => {
+      item.details[j].amount = parseFloat(e.target.value) || 0;
+      card.querySelector('.card-total .num').textContent = itemTotal(item);
+      recalc();
+      scheduleSave();
+    });
+
+    row.querySelector('.del-row').addEventListener('click', () => {
+      item.details.splice(j, 1);
+      renderCard(i);
+      recalc();
+      scheduleSave();
+    });
+  });
+
+  card.querySelector('.add-detail-btn').addEventListener('click', () => {
+    item.details.push({ label: '新項目', amount: 0 });
+    item.open = true;
+    renderCard(i);
+    recalc();
+    scheduleSave();
+  });
+
+  card.querySelector('.card-note-input').addEventListener('input', (e) => {
+    item.note = e.target.value;
+    scheduleSave();
+  });
+}
+
+renderAll();
+refreshTagLabels();
+
+document.getElementById('save-now-btn').addEventListener('click', () => {
+  if (saveTimer) { clearTimeout(saveTimer); saveTimer = null; }
+  saveState();
+});
+
+document.getElementById('export-btn').addEventListener('click', () => {
+  try{
+    const data = collectState();
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const d = new Date();
+    const stamp = `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}-${String(d.getHours()).padStart(2,'0')}${String(d.getMinutes()).padStart(2,'0')}`;
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `openbook_10週年預算_${stamp}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }catch(err){
+    console.error('匯出失敗', err);
+    alert('匯出失敗，請確認瀏覽器是否允許下載檔案。');
+  }
+});
+
+document.getElementById('import-btn').addEventListener('click', () => {
+  document.getElementById('import-file-input').click();
+});
+
+document.getElementById('import-file-input').addEventListener('change', (e) => {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (evt) => {
+    try{
+      const data = JSON.parse(evt.target.result);
+      if (!data || !Array.isArray(data.items) || !data.items.length){
+        throw new Error('檔案格式不正確，找不到項目資料');
+      }
+      if (!confirm(`確定要匯入「${file.name}」嗎？這會覆蓋目前畫面上的所有內容（含未儲存的變更）。`)) return;
+
+      items.length = 0;
+      data.items.forEach(it => items.push(it));
+      items.forEach(it => {
+        if (it.open === undefined) it.open = true;
+        if (it.note === undefined) it.note = '';
+      });
+
+      if (data.tagLabels){
+        if (data.tagLabels.red !== undefined) document.getElementById('tagname-red').value = data.tagLabels.red;
+        if (data.tagLabels.blue !== undefined) document.getElementById('tagname-blue').value = data.tagLabels.blue;
+        if (data.tagLabels.green !== undefined) document.getElementById('tagname-green').value = data.tagLabels.green;
+        TAG_LABEL.red = document.getElementById('tagname-red').value;
+        TAG_LABEL.blue = document.getElementById('tagname-blue').value;
+        TAG_LABEL.green = document.getElementById('tagname-green').value;
+      }
+      if (data.sortMode){
+        sortMode = data.sortMode;
+        document.querySelectorAll('.sort-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === sortMode));
+      }
+
+      renderAll();
+      refreshTagLabels();
+      recalc();
+      saveState();
+      alert('匯入成功！內容已載入並自動存進此瀏覽器。');
+    }catch(err){
+      console.error('匯入失敗', err);
+      alert('匯入失敗：檔案內容無法辨識，請確認是從本頁面匯出的 JSON 檔。');
+    }finally{
+      e.target.value = '';
+    }
+  };
+  reader.onerror = () => {
+    alert('讀取檔案失敗，請再試一次。');
+  };
+  reader.readAsText(file, 'utf-8');
+});
+
+document.getElementById('clear-save-btn').addEventListener('click', () => {
+  if (confirm('確定要清除已儲存在此瀏覽器的資料嗎？此動作無法復原（目前畫面上的內容不會消失，但重新整理後會恢復成原始預算）。')){
+    clearSavedState();
+  }
+});
+
+if (savedTimestamp){
+  setSaveStatus('loaded', savedTimestamp);
+} else {
+  setSaveStatus('idle');
+}
+
+function fmt(n){
+  return `約 ${Math.round(n * 10) / 10} 萬`;
+}
+
+function recalc(){
+  const included = items.filter(it => it.included);
+  const total = included.reduce((s, it) => s + itemTotal(it), 0);
+  const grand = items.reduce((s, it) => s + itemTotal(it), 0);
+
+  document.getElementById('sum-grand').textContent = fmt(grand);
+  document.getElementById('sum-total').textContent = fmt(total);
+
+  ['red', 'blue', 'green', 'none'].forEach(color => {
+    const checked = items.filter(it => it.tagColor === color && it.included);
+    const checkedSum = checked.reduce((s, it) => s + itemTotal(it), 0);
+    document.getElementById(`c${color}-sum`).textContent = fmt(checkedSum);
+    document.getElementById(`c${color}-items`).textContent = checked.length
+      ? checked.map(it => it.name).join('、')
+      : '（目前無勾選項目）';
+  });
+}
+
+recalc();
+</script>
+</body>
+</html>
