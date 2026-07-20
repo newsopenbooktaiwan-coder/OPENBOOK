@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Openbook 十週年|讓認真讀一本書這件事,還有人替你守候</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F5EF;
+  --ink:#22251F;
+  --ink-soft:#5A5D55;
+  --night:#171A1F;
+  --night-text:#E8E5DC;
+  --seal:#B5341F;
+  --seal-dark:#8C2716;
+  --line:#D8D4C8;
+  --serif:'Noto Serif TC',serif;
+  --sans:'Noto Sans TC',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.9;font-size:17px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.6}
+section{padding:96px 24px}
+.wrap{max-width:960px;margin:0 auto}
+.narrow{max-width:680px;margin:0 auto}
+
+/* 編輯工具列 */
+.edit-toolbar{position:fixed;top:12px;right:12px;z-index:200;display:flex;gap:8px}
+.edit-toolbar button{font-family:var(--sans);font-size:13px;font-weight:700;padding:9px 16px;border-radius:5px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;letter-spacing:.05em;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.edit-toolbar button:hover{background:var(--paper)}
+.edit-toolbar button.active{background:var(--seal);border-color:var(--seal);color:#fff}
+body.editing [contenteditable]:hover{outline:2px dashed var(--seal);outline-offset:2px}
+body.editing [contenteditable]:focus{outline:2px solid var(--seal);outline-offset:2px;background:rgba(181,52,31,.04)}
+body.editing a.btn{pointer-events:auto}
+
+/* 原型標註 */
+.note{display:inline-block;background:#F2E38A;color:#5C4B00;font-size:12px;padding:2px 10px;border-radius:3px;vertical-align:middle;margin-left:8px;font-weight:500;letter-spacing:.05em}
+.proto-bar{background:var(--ink);color:#fff;font-size:13px;text-align:center;padding:8px 16px;letter-spacing:.1em}
+
+/* 印章語彙 */
+.stamp{display:inline-flex;align-items:center;justify-content:center;border:2.5px solid var(--seal);color:var(--seal);font-family:var(--serif);font-weight:900;border-radius:6px;transform:rotate(-3deg)}
+
+/* Hero */
+.hero{min-height:92vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:64px}
+.hero .wrap{display:flex;gap:48px;align-items:stretch;justify-content:space-between;width:100%}
+.hero-main{flex:1;min-width:0}
+.video-ph{aspect-ratio:16/9;background:linear-gradient(0deg,#2A2D26,#3A3E35);border-radius:4px;display:flex;align-items:center;justify-content:center;color:#CFCBBE;flex-direction:column;gap:12px;margin-bottom:36px}
+.video-ph .play{width:64px;height:64px;border:2px solid #CFCBBE;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px}
+.hero-sub{color:var(--ink-soft);font-size:16px;max-width:34em}
+.hero-vertical{writing-mode:vertical-rl;font-family:var(--serif);font-weight:900;font-size:clamp(30px,4.2vw,52px);letter-spacing:.18em;line-height:1.9;padding:8px 0 8px 16px;border-left:1px solid var(--line)}
+.hero-vertical em{font-style:normal;color:var(--seal)}
+.hero-seal{position:absolute;right:28px;bottom:28px;width:76px;height:76px;font-size:15px;letter-spacing:.1em;background:rgba(247,245,239,.7)}
+.btn{display:inline-block;background:var(--seal);color:#fff;font-family:var(--sans);font-weight:700;font-size:17px;padding:14px 36px;border-radius:4px;text-decoration:none;letter-spacing:.12em;border:none;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--seal-dark)}
+.btn.ghost{background:transparent;color:var(--seal);border:1.5px solid var(--seal)}
+.btn.ghost:hover{background:rgba(181,52,31,.06)}
+
+/* 章節標 */
+.eyebrow{font-family:var(--sans);font-size:14px;letter-spacing:.35em;color:var(--seal);font-weight:700;margin-bottom:16px}
+h2{font-size:clamp(26px,3.4vw,36px);margin-bottom:40px}
+
+/* 夜色危機區 */
+.night{background:var(--night);color:var(--night-text)}
+.night .eyebrow{color:#D8A08F}
+.night p{margin-bottom:1.6em;color:#C9C6BC}
+.night strong{color:#fff;font-weight:500}
+.big-q{font-family:var(--serif);font-size:clamp(24px,3vw,32px);color:#fff;margin:56px 0;padding-left:20px;border-left:3px solid var(--seal);line-height:1.8}
+.unique{background:#20242B;border:1px solid #383D46;border-radius:6px;padding:36px 32px;margin-top:56px}
+.unique p{color:#E8E5DC;font-family:var(--serif);font-size:20px;margin:0;line-height:2.1}
+.unique .tag{font-family:var(--sans);font-size:13px;letter-spacing:.3em;color:#D8A08F;display:block;margin-bottom:14px}
+.unique strong{color:#F0B7A4;font-weight:600}
+
+/* 數字 */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:48px 0}
+.stat{background:var(--paper);padding:36px 24px;text-align:center}
+.stat b{font-family:var(--serif);font-size:40px;font-weight:900;display:block;color:var(--ink)}
+.stat span{font-size:14px;color:var(--ink-soft);letter-spacing:.05em}
+
+/* 時間軸 */
+.timeline{border-left:1px solid var(--line);margin:48px 0 0 8px;padding-left:36px}
+.tl-item{position:relative;padding-bottom:44px}
+.tl-item::before{content:'';position:absolute;left:-41px;top:10px;width:9px;height:9px;border-radius:50%;background:var(--seal)}
+.tl-item .yr{font-family:var(--serif);font-weight:900;font-size:22px;letter-spacing:.08em}
+.tl-item p{color:var(--ink-soft);font-size:16px}
+.belief{font-family:var(--serif);font-size:19px;line-height:2.2;margin-top:64px;padding-top:48px;border-top:1px solid var(--line)}
+
+/* 證言 */
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.quote{background:#fff;border:1px solid var(--line);border-radius:6px;padding:32px 28px}
+.quote p{font-family:var(--serif);font-size:17px;line-height:2}
+.quote .who{margin-top:18px;font-size:13px;color:var(--ink-soft);letter-spacing:.1em}
+.quote .who b{color:var(--seal);font-weight:700;margin-right:8px}
+
+/* 方案區 */
+.plans-intro{max-width:640px;margin-bottom:56px}
+.anchor-line{font-family:var(--serif);font-size:20px;margin-top:24px;line-height:2}
+.anchor-line strong{color:var(--seal)}
+.plan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;margin-bottom:64px}
+.plan{background:#fff;border:1px solid var(--line);border-radius:8px;padding:40px 36px;position:relative}
+.plan.featured{border:2px solid var(--seal)}
+.plan .badge{position:absolute;top:-14px;left:32px;background:var(--seal);color:#fff;font-size:12px;padding:4px 14px;border-radius:3px;letter-spacing:.15em}
+.plan h3{font-size:24px;margin-bottom:6px}
+.plan .tagline{font-size:14px;color:var(--ink-soft);margin-bottom:24px}
+.plan ul{list-style:none;margin-bottom:8px}
+.plan li{padding:10px 0 10px 26px;border-bottom:1px dashed var(--line);font-size:15px;position:relative}
+.plan li::before{content:'—';position:absolute;left:0;color:var(--seal)}
+.amounts{display:flex;gap:12px;flex-wrap:wrap;margin:40px 0 20px}
+.amt{flex:1;min-width:160px;background:#fff;border:1.5px solid var(--line);border-radius:6px;padding:22px 18px;text-align:center;cursor:pointer;transition:border-color .15s}
+.amt:hover{border-color:var(--seal)}
+.amt.selected{border:2px solid var(--seal);background:#FBF3F1}
+.amt b{font-family:var(--serif);font-size:24px;display:block}
+.amt span{font-size:13px;color:var(--ink-soft)}
+.amt .sel-tag{display:block;font-size:11px;color:var(--seal);letter-spacing:.2em;margin-top:6px;font-weight:700}
+.once{background:#fff;border:1px solid var(--line);border-radius:8px;padding:40px 36px;display:flex;gap:36px;align-items:center;flex-wrap:wrap;margin-bottom:64px}
+.book-ph{width:120px;height:160px;background:var(--ink);color:var(--paper);border-radius:2px 6px 6px 2px;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;font-family:var(--serif);letter-spacing:.3em;font-size:15px;flex-shrink:0;box-shadow:6px 6px 0 var(--line)}
+.once-body{flex:1;min-width:260px}
+.goal{margin-top:8px}
+.goal-bar{height:10px;background:#E7E3D7;border-radius:5px;overflow:hidden;margin:20px 0 32px}
+.goal-bar i{display:block;height:100%;width:38%;background:var(--seal);border-radius:5px}
+.goal-item{display:flex;gap:20px;padding:16px 0;border-bottom:1px dashed var(--line);align-items:baseline}
+.goal-item .g-amt{font-family:var(--serif);font-weight:900;font-size:19px;min-width:88px;color:var(--seal)}
+
+/* 透明區 */
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px}
+.pie-ph{aspect-ratio:1;max-width:280px;border-radius:50%;background:conic-gradient(var(--ink) 0 62%, var(--seal) 62% 84%, #A9A491 84% 100%);margin:0 auto;position:relative}
+.pie-ph::after{content:'';position:absolute;inset:28%;background:var(--paper);border-radius:50%}
+.legend{list-style:none;font-size:15px;margin-top:24px}
+.legend li{display:flex;align-items:center;gap:10px;padding:6px 0}
+.dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+details{border-bottom:1px solid var(--line);padding:20px 0}
+summary{font-weight:700;cursor:pointer;font-size:16px;list-style:none;display:flex;justify-content:space-between}
+summary::after{content:'+';color:var(--seal);font-size:20px;font-family:var(--serif)}
+details[open] summary::after{content:'−'}
+details p{color:var(--ink-soft);font-size:15px;margin-top:12px}
+
+/* 收尾 */
+.final{background:var(--night);color:var(--night-text);text-align:center;padding:140px 24px}
+.final .lead{font-family:var(--serif);font-size:19px;color:#B9B6AC;line-height:2.4;margin-bottom:48px}
+.final .lead strong{color:#fff;font-weight:600}
+.final h2{color:#fff;font-size:clamp(28px,4vw,42px);margin-bottom:56px;letter-spacing:.1em}
+.final h2 em{font-style:normal;color:#F0B7A4}
+
+/* Sticky CTA */
+.sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(34,37,31,.96);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;z-index:99;gap:16px;transform:translateY(100%);transition:transform .3s}
+.sticky.show{transform:translateY(0)}
+.sticky span{font-size:14px;letter-spacing:.08em}
+.sticky .btn{padding:10px 24px;font-size:15px}
+
+/* 動畫 */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+@media (max-width:720px){
+  .hero .wrap{flex-direction:column-reverse}
+  .hero-vertical{writing-mode:horizontal-tb;border-left:none;border-bottom:1px solid var(--line);padding:0 0 20px;font-size:28px;line-height:1.8}
+  section{padding:72px 20px}
+  .hero-seal{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="proto-bar">內部審閱原型|非正式上線頁面|黃色標籤為待團隊確認事項|按右上「編輯文案」可直接修改文字</div>
+
+<div class="edit-toolbar">
+  <button id="editToggle" onclick="toggleEdit()">✎ 編輯文案</button>
+  <button onclick="exportPage()">⬇ 下載修改版</button>
+</div>
+
+<!-- ① Hero -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-main">
+      <div class="video-ph">
+        <div class="play">▶</div>
+        <div>十週年形象影片(版本 B)<span class="note">影片交片後置入</span></div>
+      </div>
+      <p class="hero-sub">Openbook 閱讀誌十週年——不接廣告、不追流量,我們只為讓好書被看見。</p>
+      <p style="margin-top:28px"><a class="btn" href="#plans">支持 Openbook 走進下一個十年</a></p>
+    </div>
+    <h1 class="hero-vertical">讓認真讀一本書這件事,<br>下一個十年,<br><em>還有人替你守候。</em></h1>
+  </div>
+  <div class="stamp hero-seal">十週年<br>之印</div>
+</section>
+
+<!-- ② 危機敘事 -->
+<section class="night">
+  <div class="narrow">
+    <p class="eyebrow reveal">為什麼是現在</p>
+    <h2 class="reveal" style="color:#fff">書評,正在世界各地<br>一頁一頁消失</h2>
+    <p class="reveal">2025 年 8 月,美聯社終止書評服務,全美數百家轉載的小型報紙,從此失去專業書評來源。半年後,《華盛頓郵報》在大規模裁員中,解散了整個 Book World 書評部門。消息傳出,數百名讀者在華盛頓特區為它舉辦了一場悼念會。</p>
+    <p class="reveal">資深評論家 Dwight Garner 提出一個冷峻的對比:1960 年代,一本受好評的小說處女作可能獲得多達 <strong>90 篇</strong>報紙書評;今天,這個數字正快速逼近於<strong>零</strong>。</p>
+    <p class="reveal">台灣的情況同樣嚴峻。七十年的《幼獅文藝》於 2023 年底停刊;六十年的《讀者文摘》中文版於 2025 年告別讀者。</p>
+    <p class="reveal">一個社會願意花多少力氣認真討論一本書,往往決定了它的思想能走多遠。書評不是出版產業的附屬品,而是公民社會的基礎建設。沒有書評的閱讀環境,就像沒有獨立媒體的民主——表面上選擇很多,實際上只剩下行銷話術與演算法推薦。</p>
+    <div class="big-q reveal">誰來告訴我,<br>這本書值不值得讀?</div>
+    <div class="unique reveal">
+      <span class="tag">不可替代性</span>
+      <p>Openbook 是全台灣唯一<strong>不接廣告、由編輯獨立決定選書、每年系統性追蹤超過兩千本新書</strong>的書評媒體。<br>沒有 Openbook,這個位置就空了。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ③ 十年成果 -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow reveal">十年,我們做了什麼</p>
+    <h2 class="reveal">替你讀、替你選、替你守著這件事</h2>
+    <div class="stats reveal">
+      <div class="stat"><b>X,XXX</b><span>篇書評與深度報導<span class="note">補數字</span></span></div>
+      <div class="stat"><b>X 屆</b><span>Openbook 好書獎<span class="note">補數字</span></span></div>
+      <div class="stat"><b>XXX 集</b><span>閱讀隨身聽 Podcast<span class="note">補數字</span></span></div>
+      <div class="stat"><b>XXX 位</b><span>作家專訪<span class="note">補數字</span></span></div>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-item"><div class="yr">2017</div><p>Openbook 閱讀誌創立,第一屆 Openbook 好書獎。<span class="note">確認年份與事件</span></p></div>
+      <div class="tl-item"><div class="yr">20XX</div><p>里程碑事件二。<span class="note">待補</span></p></div>
+      <div class="tl-item"><div class="yr">20XX</div><p>里程碑事件三。<span class="note">待補</span></p></div>
+      <div class="tl-item"><div class="yr">2026</div><p>十週年。我們邀請你,一起走進下一個十年。</p></div>
+    </div>
+    <div class="belief narrow reveal">
+      <p>寫作,是一個人的事。閱讀,也是一個人的事。</p>
+      <p style="margin-top:1.4em">在這座島上,有人正獨自寫著一個還沒有人讀過的故事;有人正獨自讀著一本沒有人能一起討論的書。十年來,我們站在中間,把他們接起來——我們讓創作與閱讀,不再只是一個人的事。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ④ 證言 -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow reveal">他們這樣說</p>
+    <div class="quotes reveal">
+      <div class="quote"><p>「Openbook 的書評,是我最信任的回饋。他們是真的把書讀完的人。」</p><div class="who"><b>作家</b>姓名<span class="note">邀約中</span></div></div>
+      <div class="quote"><p>「一本安靜的好書,因為一篇書評被看見。這種事只在 Openbook 發生。」</p><div class="who"><b>出版人</b>姓名<span class="note">邀約中</span></div></div>
+      <div class="quote"><p>「我們的選書檯,有一半是跟著 Openbook 走的。」</p><div class="who"><b>獨立書店</b>店名<span class="note">邀約中</span></div></div>
+      <div class="quote"><p>「如果沒有那篇書評,我不會遇見那本改變我的書。」</p><div class="who"><b>讀者</b>可匿名</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑤ 支持方案 -->
+<section id="plans" style="background:#F0EDE3">
+  <div class="wrap">
+    <p class="eyebrow reveal">支持方案</p>
+    <h2 class="reveal">讀者,是我們唯一的老闆</h2>
+    <div class="plans-intro reveal">
+      <p>Openbook 不接受廣告。這讓我們的每一篇書評都只對讀者負責——也讓我們的存續,只能依靠讀者。</p>
+      <p class="anchor-line">一篇深度書評,從邀稿、閱讀、編輯、校對到上線,需要 <strong>約 40 位</strong> 定期定額捐款者共同支撐。<span class="note">以真實成本回推此數字</span><br>我們邀請你,成為其中一位。</p>
+    </div>
+    <div class="plan-grid reveal">
+      <div class="plan">
+        <h3>守候者方案</h3>
+        <p class="tagline">純粹的支持,沒有回饋品。你守護的是一份你正在使用的公共財。</p>
+        <ul>
+          <li>每季財務透明報告</li>
+          <li>年度成果回顧</li>
+        </ul>
+      </div>
+      <div class="plan featured">
+        <span class="badge">會員限定內容</span>
+        <h3>會員方案</h3>
+        <p class="tagline">支持之外,升級你的閱讀體驗。</p>
+        <ul>
+          <li>每月會員限定電子報(編輯部後台視角)</li>
+          <li>年度好書獎決選書單搶先看</li>
+          <li>連續滿一年:年度精選實體刊物<span class="note">回饋品確認</span></li>
+          <li>連續滿三年:「創始會員」永久身分</li>
+        </ul>
+      </div>
+    </div>
+    <div class="amounts reveal">
+      <div class="amt"><b>100 元 / 月</b><span>一杯咖啡的預算,一整年的陪伴</span></div>
+      <div class="amt selected"><b>300 元 / 月</b><span>一本書的預算,和我們一起讀完這一年</span><span class="sel-tag">最多人選擇</span></div>
+      <div class="amt"><b>500 元 / 月</b><span>讓下一個十年,提早開始</span></div>
+    </div>
+    <p class="reveal" style="text-align:center;margin-bottom:72px"><a class="btn" href="#">加入定期定額</a>&nbsp;&nbsp;<span style="font-size:13px;color:var(--ink-soft)">導向現有 CiviCRM 捐款表單,隨時可取消</span></p>
+
+    <div class="once reveal">
+      <div class="book-ph">十年書單</div>
+      <div class="once-body">
+        <h3 style="font-size:22px;margin-bottom:8px">單筆捐款|十週年限定回饋</h3>
+        <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px">單筆 500 元以上,獲得十週年限定《十年書單》小冊——收錄十年來編輯部最想推薦的 100 本書。僅於募資期間送出,之後不再製作。<span class="note">回饋品規格確認</span></p>
+        <a class="btn ghost" href="#">單筆支持,帶走十年書單</a>
+      </div>
+    </div>
+
+    <div class="goal reveal">
+      <p class="eyebrow">一起完成的事</p>
+      <h3 style="font-size:22px">你的捐款,會變成這些事</h3>
+      <div class="goal-bar"><i></i></div>
+      <div class="goal-item"><div class="g-amt">50 萬</div><p>年度好書獎聯展,擴大到 X 間圖書館<span class="note">補數字</span></p></div>
+      <div class="goal-item"><div class="g-amt">100 萬</div><p>好書獎作家走進 10 間校園</p></div>
+      <div class="goal-item"><div class="g-amt">200 萬</div><p>開設全新內容線<span class="note">譯者專訪系列/書評寫作課,擇一</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ 透明 -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow reveal">信任與透明</p>
+    <h2 class="reveal">錢會怎麼用</h2>
+    <div class="split reveal">
+      <div>
+        <div class="pie-ph"></div>
+        <ul class="legend">
+          <li><i class="dot" style="background:var(--ink)"></i>內容產製(稿費、編輯、攝影)XX%<span class="note">補比例</span></li>
+          <li><i class="dot" style="background:var(--seal)"></i>好書獎與活動 XX%</li>
+          <li><i class="dot" style="background:#A9A491"></i>行政與營運 XX%</li>
+        </ul>
+        <p style="font-size:14px;margin-top:12px"><a href="#" style="color:var(--seal)">歷年財務報告</a> ・ <a href="#" style="color:var(--seal)">捐款徵信名錄</a></p>
+      </div>
+      <div>
+        <details><summary>捐款可以抵稅嗎?</summary><p>依組織登記狀態填寫,附收據申請方式。<span class="note">待補</span></p></details>
+        <details><summary>定期定額如何取消或更改金額?</summary><p>填寫取消與變更流程,強調隨時可取消。<span class="note">待補流程</span></p></details>
+        <details open><summary>為什麼不接廣告就好,還要跟讀者募款?</summary><p>因為廣告會讓書評不再只對讀者負責。我們選擇了比較難走的路:讓讀者成為唯一的老闆。</p></details>
+        <details><summary>我捐的錢會用在哪裡?</summary><p>請見左方支出結構與歷年財務報告。每季,定期定額捐款者都會收到財務透明報告。</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑦ 收尾 -->
+<section class="final">
+  <div class="narrow">
+    <p class="lead reveal">十年前,我們決定做一件看起來很小的事:<br>認真讀完每一本書,然後告訴你,它值不值得。<br>這件事看起來很小,小到一家又一家媒體把它默默關掉。<br><strong>因為我們相信,它一點都不小。</strong></p>
+    <h2 class="reveal">讓認真讀一本書這件事,<br>下一個十年,<em>還有人替你守候。</em></h2>
+    <p class="reveal"><a class="btn" href="#plans">成為守候的人</a></p>
+  </div>
+</section>
+
+<div class="sticky" id="sticky">
+  <span>Openbook 十週年募資</span>
+  <a class="btn" href="#plans">支持我們</a>
+</div>
+
+<script>
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const sticky=document.getElementById('sticky');
+window.addEventListener('scroll',()=>{sticky.classList.toggle('show',window.scrollY>window.innerHeight*.8)});
+document.querySelectorAll('.amt').forEach(a=>a.addEventListener('click',()=>{if(document.body.classList.contains('editing'))return;document.querySelectorAll('.amt').forEach(x=>x.classList.remove('selected'));a.classList.add('selected')}));
+
+/* ===== 編輯模式 ===== */
+const EDITABLE='h1,h2,h3,p,li,span,b,em,strong,summary,.who,.yr,.stamp,.note,button.btn,a.btn';
+function toggleEdit(){
+  const on=!document.body.classList.contains('editing');
+  document.body.classList.toggle('editing',on);
+  document.getElementById('editToggle').classList.toggle('active',on);
+  document.getElementById('editToggle').textContent=on?'✔ 完成編輯':'✎ 編輯文案';
+  document.querySelectorAll(EDITABLE).forEach(el=>{
+    if(el.closest('.edit-toolbar'))return;
+    if(on){el.setAttribute('contenteditable','true');}
+    else{el.removeAttribute('contenteditable');}
+  });
+  if(on){
+    document.querySelectorAll('a').forEach(a=>{if(!a.closest('.edit-toolbar'))a.dataset.href=a.getAttribute('href')||'',a.removeAttribute('href');});
+    alert('編輯模式已開啟:直接點擊任何文字即可修改。\n改完按「完成編輯」,再按「下載修改版」存檔。');
+  }else{
+    document.querySelectorAll('a[data-href]').forEach(a=>{a.setAttribute('href',a.dataset.href);delete a.dataset.href;});
+  }
+}
+function exportPage(){
+  if(document.body.classList.contains('editing'))toggleEdit();
+  const clone=document.documentElement.cloneNode(true);
+  clone.querySelectorAll('.reveal.in').forEach(el=>el.classList.remove('in'));
+  const st=clone.querySelector('#sticky');if(st)st.classList.remove('show');
+  clone.querySelector('body').classList.remove('editing');
+  const html='<!DOCTYPE html>\n'+clone.outerHTML;
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  const a=document.createElement('a');
+  const d=new Date(),pad=n=>String(n).padStart(2,'0');
+  a.download=`Openbook十週年募資頁面原型_${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}_${pad(d.getHours())}${pad(d.getMinutes())}.html`;
+  a.href=URL.createObjectURL(blob);
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+</script>
+</body>
+</html>
